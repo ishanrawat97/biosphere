@@ -22,15 +22,15 @@ func _generate_sample(dt: float) -> float:
 	if phase3 > TAU:
 		phase3 -= TAU
 
-	var sample := (sin(phase1) + sin(phase2) + sin(phase3)) / 3.0
+	var sample: float = (sin(phase1) + sin(phase2) + sin(phase3)) / 3.0
 
 	# Slow shimmer LFO
 	lfo_phase += 0.08 * dt * TAU
 	if lfo_phase > TAU:
 		lfo_phase -= TAU
-	var shimmer := (sin(lfo_phase) + 1.0) * 0.5
+	var shimmer: float = (sin(lfo_phase) + 1.0) * 0.5
 
 	# Add octave harmonic for sparkle
-	var sparkle := sin(phase1 * 2.0) * 0.15 * shimmer
+	var sparkle: float = sin(phase1 * 2.0) * 0.15 * shimmer
 
 	return (sample * 0.35 + sparkle) * (0.7 + shimmer * 0.3)

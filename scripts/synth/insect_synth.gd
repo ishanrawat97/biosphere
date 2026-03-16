@@ -19,16 +19,16 @@ func _generate_sample(dt: float) -> float:
 	if osc2_phase > TAU:
 		osc2_phase -= TAU
 
-	var carrier := sin(osc1_phase) * 0.5 + sin(osc2_phase) * 0.3
+	var carrier: float = sin(osc1_phase) * 0.5 + sin(osc2_phase) * 0.3
 
 	# Amplitude modulation (cricket-like chirr)
 	am_phase += am_freq * dt * TAU
 	if am_phase > TAU:
 		am_phase -= TAU
-	var am := (sin(am_phase) + 1.0) * 0.5
+	var am: float = (sin(am_phase) + 1.0) * 0.5
 
 	# Slow on/off pattern
-	var pattern := sin(time * 0.5 * TAU)
+	var pattern: float = sin(time * 0.5 * TAU)
 	var gate := 1.0 if pattern > -0.3 else 0.0
 
 	return carrier * am * gate * 0.2

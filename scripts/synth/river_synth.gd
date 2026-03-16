@@ -16,7 +16,7 @@ func _generate_sample(dt: float) -> float:
 	if lfo2_phase > TAU:
 		lfo2_phase -= TAU
 
-	var mod := (sin(lfo1_phase) + sin(lfo2_phase) * 0.6) * 0.5
+	var mod: float = (sin(lfo1_phase) + sin(lfo2_phase) * 0.6) * 0.5
 	var noise := _white_noise()
 
 	# Band-pass: LP at 3000 Hz then HP at 200 Hz

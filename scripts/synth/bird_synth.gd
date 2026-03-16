@@ -35,7 +35,7 @@ func _generate_sample(dt: float) -> float:
 		c["life"] += dt
 		if c["life"] < c["dur"]:
 			var t_norm: float = c["life"] / c["dur"]
-			var env := sin(t_norm * PI)
+			var env: float = sin(t_norm * PI)
 			var freq: float = c["base_freq"] + c["sweep"] * t_norm
 			c["phase"] += freq * dt * TAU
 			sample += sin(c["phase"]) * env * c["amp"] * 0.3

@@ -20,7 +20,7 @@ func _generate_sample(dt: float) -> float:
 	sample += crackle_lp * 0.2
 
 	# Random amplitude variation for crackle character
-	var crackle_mod := absf(_white_noise())
+	var crackle_mod: float = absf(_white_noise())
 	sample *= (0.5 + crackle_mod * 0.5)
 
 	# Random pops

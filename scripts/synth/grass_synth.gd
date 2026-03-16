@@ -19,6 +19,6 @@ func _generate_sample(dt: float) -> float:
 	am_phase += 0.25 * dt * TAU
 	if am_phase > TAU:
 		am_phase -= TAU
-	var am := (sin(am_phase) + sin(am_phase * 1.7) * 0.5) * 0.33 + 0.67
+	var am: float = (sin(am_phase) + sin(am_phase * 1.7) * 0.5) * 0.33 + 0.67
 
 	return hp_prev * am * 0.2

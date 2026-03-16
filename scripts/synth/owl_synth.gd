@@ -39,7 +39,7 @@ func _generate_sample(dt: float) -> float:
 	vibrato_phase += 5.0 * dt * TAU
 	if vibrato_phase > TAU:
 		vibrato_phase -= TAU
-	var vibrato := sin(vibrato_phase) * 15.0
+	var vibrato: float = sin(vibrato_phase) * 15.0
 
 	# Main sine tone
 	owl_phase += (hoot_freq + vibrato) * dt * TAU
@@ -48,7 +48,7 @@ func _generate_sample(dt: float) -> float:
 
 	# Smooth envelope
 	var t_norm := hoot_life / hoot_dur
-	var env := sin(t_norm * PI)
+	var env: float = sin(t_norm * PI)
 	env = pow(env, 0.5)
 
 	if hoot_life >= hoot_dur:

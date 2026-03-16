@@ -37,7 +37,7 @@ func _generate_sample(dt: float) -> float:
 	mod_phase += mod_freq * dt * TAU
 	if mod_phase > TAU:
 		mod_phase -= TAU
-	var fm := sin(mod_phase) * croak_freq * 0.8
+	var fm: float = sin(mod_phase) * croak_freq * 0.8
 
 	carrier_phase += (croak_freq + fm) * dt * TAU
 	if carrier_phase > TAU:

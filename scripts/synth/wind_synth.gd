@@ -9,7 +9,7 @@ func _generate_sample(dt: float) -> float:
 	lfo_phase += 0.15 * dt * TAU
 	if lfo_phase > TAU:
 		lfo_phase -= TAU
-	var lfo := (sin(lfo_phase) + sin(lfo_phase * 0.7)) * 0.5
+	var lfo: float = (sin(lfo_phase) + sin(lfo_phase * 0.7)) * 0.5
 	var cutoff := 800.0 + lfo * 400.0
 
 	# Simple one-pole low-pass filter on white noise

@@ -19,7 +19,7 @@ func _generate_sample(dt: float) -> float:
 		wave_period = randf_range(6.0, 10.0)
 
 	# Wave crest shape: rises slowly, crashes quickly
-	var env := sin(wave_phase * PI)
+	var env: float = sin(wave_phase * PI)
 	env = pow(env, 0.7)
 
 	# Filtered noise for wave sound

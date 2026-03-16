@@ -47,7 +47,7 @@ func _generate_sample(dt: float) -> float:
 		owl_phase -= TAU
 
 	# Smooth envelope
-	var t_norm := hoot_life / hoot_dur
+	var t_norm: float = hoot_life / hoot_dur
 	var env: float = sin(t_norm * PI)
 	env = pow(env, 0.5)
 

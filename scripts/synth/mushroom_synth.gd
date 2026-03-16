@@ -8,7 +8,7 @@ var lfo_phase := 0.0
 
 func _generate_sample(dt: float) -> float:
 	# Three detuned sines creating a shimmer pad
-	var base_freq := 220.0
+	var base_freq: float = 220.0
 
 	phase1 += base_freq * dt * TAU
 	if phase1 > TAU:

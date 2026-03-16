@@ -6,12 +6,12 @@ var hp_input_prev := 0.0
 var am_phase := 0.0
 
 func _generate_sample(dt: float) -> float:
-	var noise := _white_noise()
+	var noise: float = _white_noise()
 
 	# High-pass filter for airy rustling
-	var hp_cutoff := 3000.0
-	var rc := 1.0 / (TAU * hp_cutoff)
-	var alpha := rc / (rc + dt)
+	var hp_cutoff: float = 3000.0
+	var rc: float = 1.0 / (TAU * hp_cutoff)
+	var alpha: float = rc / (rc + dt)
 	hp_prev = alpha * (hp_prev + noise - hp_input_prev)
 	hp_input_prev = noise
 

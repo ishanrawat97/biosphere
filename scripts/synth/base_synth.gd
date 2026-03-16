@@ -24,21 +24,21 @@ func stop() -> void:
 		_fade_progress = 0.0
 
 func fill_buffer(buffer: PackedVector2Array) -> void:
-	var frames := buffer.size()
-	var dt := 1.0 / SAMPLE_RATE
+	var frames: int = buffer.size()
+	var dt: float = 1.0 / SAMPLE_RATE
 	for i in frames:
-		var sample := 0.0
+		var sample: float = 0.0
 		if active:
 			sample = _generate_sample(dt) * volume
 			if _fading_out:
 				_fade_progress += dt
-				var fade_factor := 1.0 - clampf(_fade_progress / FADE_OUT_TIME, 0.0, 1.0)
+				var fade_factor: float = 1.0 - clampf(_fade_progress / FADE_OUT_TIME, 0.0, 1.0)
 				sample *= fade_factor
 				if _fade_progress >= FADE_OUT_TIME:
 					active = false
 					_fading_out = false
 		time += dt
-		var v := clampf(sample, -1.0, 1.0)
+		var v: float = clampf(sample, -1.0, 1.0)
 		buffer[i] = Vector2(v, v)
 
 func _generate_sample(_dt: float) -> float:

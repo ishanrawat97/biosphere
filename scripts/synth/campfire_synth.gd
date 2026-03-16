@@ -10,12 +10,12 @@ func start() -> void:
 	next_pop = time + randf_range(0.1, 0.5)
 
 func _generate_sample(dt: float) -> float:
-	var sample := 0.0
+	var sample: float = 0.0
 
 	# Base crackle: filtered noise
-	var cutoff := 3000.0 + _white_noise() * 1000.0
-	var rc := 1.0 / (TAU * cutoff)
-	var alpha := dt / (rc + dt)
+	var cutoff: float = 3000.0 + _white_noise() * 1000.0
+	var rc: float = 1.0 / (TAU * cutoff)
+	var alpha: float = dt / (rc + dt)
 	crackle_lp = crackle_lp + alpha * (_white_noise() - crackle_lp)
 	sample += crackle_lp * 0.2
 

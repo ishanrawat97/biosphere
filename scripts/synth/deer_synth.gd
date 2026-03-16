@@ -34,23 +34,23 @@ func _generate_sample(dt: float) -> float:
 	saw_phase += call_freq * dt
 	if saw_phase > 1.0:
 		saw_phase -= 1.0
-	var saw := saw_phase * 2.0 - 1.0
+	var saw: float = saw_phase * 2.0 - 1.0
 
 	# Band-pass filter (LP then HP)
-	var lp_cutoff := 400.0
-	var rc_lp := 1.0 / (TAU * lp_cutoff)
-	var alpha_lp := dt / (rc_lp + dt)
+	var lp_cutoff: float = 400.0
+	var rc_lp: float = 1.0 / (TAU * lp_cutoff)
+	var alpha_lp: float = dt / (rc_lp + dt)
 	bp_prev = bp_prev + alpha_lp * (saw - bp_prev)
 
-	var hp_cutoff := 80.0
-	var rc_hp := 1.0 / (TAU * hp_cutoff)
-	var alpha_hp := rc_hp / (rc_hp + dt)
+	var hp_cutoff: float = 80.0
+	var rc_hp: float = 1.0 / (TAU * hp_cutoff)
+	var alpha_hp: float = rc_hp / (rc_hp + dt)
 	hp_prev = alpha_hp * (hp_prev + bp_prev - hp_input_prev)
 	hp_input_prev = bp_prev
 
 	# Envelope
-	var t_norm := call_life / call_dur
-	var env := 1.0
+	var t_norm: float = call_life / call_dur
+	var env: float = 1.0
 	if t_norm < 0.15:
 		env = t_norm / 0.15
 	elif t_norm > 0.6:

@@ -17,13 +17,13 @@ func _generate_sample(dt: float) -> float:
 		next_drop_time = time + randf_range(0.0005, 0.005)
 
 	# Sum active drops
-	var sample := 0.0
-	var i := drops.size() - 1
+	var sample: float = 0.0
+	var i: int = drops.size() - 1
 	while i >= 0:
-		var d := drops[i]
+		var d: Dictionary = drops[i]
 		d["life"] += dt
 		if d["life"] < d["dur"]:
-			var env := 1.0 - d["life"] / d["dur"]
+			var env: float = 1.0 - d["life"] / d["dur"]
 			sample += _white_noise() * env * d["amp"] * 0.15
 		else:
 			drops.remove_at(i)
@@ -34,8 +34,8 @@ func _generate_sample(dt: float) -> float:
 		drops = drops.slice(drops.size() - 80)
 
 	# Ambient rain floor
-	var rc := 1.0 / (TAU * 2000.0)
-	var alpha := dt / (rc + dt)
+	var rc: float = 1.0 / (TAU * 2000.0)
+	var alpha: float = dt / (rc + dt)
 	lp_prev = lp_prev + alpha * (_white_noise() - lp_prev)
 	sample += lp_prev * 0.15
 

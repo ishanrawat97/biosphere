@@ -33,7 +33,7 @@ func _generate_sample(dt: float) -> float:
 	croak_life += dt
 
 	# FM synthesis croak
-	var mod_freq := croak_freq * 2.0
+	var mod_freq: float = croak_freq * 2.0
 	mod_phase += mod_freq * dt * TAU
 	if mod_phase > TAU:
 		mod_phase -= TAU
@@ -44,8 +44,8 @@ func _generate_sample(dt: float) -> float:
 		carrier_phase -= TAU
 
 	# Envelope: quick attack, sustain, quick release
-	var t_norm := croak_life / croak_dur
-	var env := 1.0
+	var t_norm: float = croak_life / croak_dur
+	var env: float = 1.0
 	if t_norm < 0.1:
 		env = t_norm / 0.1
 	elif t_norm > 0.7:

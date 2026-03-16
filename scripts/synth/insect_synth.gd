@@ -29,6 +29,6 @@ func _generate_sample(dt: float) -> float:
 
 	# Slow on/off pattern
 	var pattern: float = sin(time * 0.5 * TAU)
-	var gate := 1.0 if pattern > -0.3 else 0.0
+	var gate: float = 1.0 if pattern > -0.3 else 0.0
 
 	return carrier * am * gate * 0.2

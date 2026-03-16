@@ -20,15 +20,15 @@ func _generate_sample(dt: float) -> float:
 
 	# Wave crest shape: rises slowly, crashes quickly
 	var env: float = sin(wave_phase * PI)
-	env = pow(env, 0.7)
+	env = pow(env, 0.7) as float
 
 	# Filtered noise for wave sound
-	var cutoff := 600.0 + env * 1500.0
-	var rc := 1.0 / (TAU * cutoff)
-	var alpha := dt / (rc + dt)
+	var cutoff: float = 600.0 + env * 1500.0
+	var rc: float = 1.0 / (TAU * cutoff)
+	var alpha: float = dt / (rc + dt)
 	lp_prev = lp_prev + alpha * (_white_noise() - lp_prev)
 
-	var sample := lp_prev * (0.2 + env * 0.4)
+	var sample: float = lp_prev * (0.2 + env * 0.4)
 
 	# Sub-bass thud at wave crest
 	if env > 0.7:

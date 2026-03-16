@@ -12,8 +12,8 @@ func start() -> void:
 func _generate_sample(dt: float) -> float:
 	# Spawn chirp events
 	if time >= next_chirp_time:
-		var base_freq := randf_range(1500.0, 4000.0)
-		var sweep_dir := 1.0 if randf() > 0.4 else -1.0
+		var base_freq: float = randf_range(1500.0, 4000.0)
+		var sweep_dir: float = 1.0 if randf() > 0.4 else -1.0
 		chirps.append({
 			"life": 0.0,
 			"dur": randf_range(0.05, 0.15),
@@ -28,8 +28,8 @@ func _generate_sample(dt: float) -> float:
 		else:
 			next_chirp_time = time + randf_range(0.3, 1.2)
 
-	var sample := 0.0
-	var i := chirps.size() - 1
+	var sample: float = 0.0
+	var i: int = chirps.size() - 1
 	while i >= 0:
 		var c: Dictionary = chirps[i]
 		c["life"] += dt

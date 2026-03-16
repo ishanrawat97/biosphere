@@ -12,7 +12,7 @@ func start() -> void:
 	crack_env = 0.0
 
 func _generate_sample(dt: float) -> float:
-	var sample := 0.0
+	var sample: float = 0.0
 
 	# Low rumble
 	rumble_phase += 40.0 * dt * TAU
@@ -21,8 +21,8 @@ func _generate_sample(dt: float) -> float:
 	sample += sin(rumble_phase) * 0.15
 
 	# Filtered noise rumble bed
-	var rc := 1.0 / (TAU * 150.0)
-	var alpha := dt / (rc + dt)
+	var rc: float = 1.0 / (TAU * 150.0)
+	var alpha: float = dt / (rc + dt)
 	lp_prev = lp_prev + alpha * (_white_noise() - lp_prev)
 	sample += lp_prev * 0.2
 
